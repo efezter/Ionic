@@ -1,0 +1,140 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Düzenle</ion-title>
+        <ion-buttons end>
+            <button (click)="updateStudent()" ion-button item-end strong>
+                Kaydet
+            </button>
+        </ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="outer-content">
+    
+    
+    <ion-list>
+        <ion-list-header hideWhen="android">
+        </ion-list-header>
+        <ion-item style="height: 120px">
+            <ion-avatar item-start>
+                <img style="width:90px; height:90px" src="{{student.pictureUrl}}" (click)="getImage()">
+                    </ion-avatar>
+            <h1>{{this.globalValues.curStudent.firstName}} {{this.globalValues.curStudent.lastName}}</h1>
+        </ion-item>
+    </ion-list>
+    
+    
+
+	<form #studentForm="ngForm" novalidate>
+
+
+
+
+<ion-list-header>
+    İLAÇLAR
+</ion-list-header>
+<ion-list>
+    <ion-item>
+        <ion-input #medicineInput maxlength="40" type="text" placeholder="İlaç adı girin"></ion-input>
+        <button (click)="addMedicine(medicineInput)" ion-button outline round item-end icon-left>
+            <ion-icon name="add"></ion-icon>
+            Ekle
+        </button>
+    </ion-item>
+    <ion-item  *ngFor="let med of student.medicines">
+        {{med.name}}
+        <button (click)="delMedicine(med)"  color="danger" ion-button round item-end outline icon-start>
+            <ion-icon name='trash'></ion-icon>
+            Sil
+        </button>
+    </ion-item>
+</ion-list>
+
+
+<ion-list-header>
+    ALERJİLER
+</ion-list-header>
+<ion-list>
+    <ion-item>
+        <ion-input #allergyInput maxlength="40" type="text" placeholder="Alerji adı girin"></ion-input>
+        <button (click)="addAllergy(allergyInput)" ion-button outline round item-end icon-left>
+            <ion-icon name="add"></ion-icon>
+            Ekle
+        </button>
+    </ion-item>
+    <ion-item  *ngFor="let allergy of student.allergies">
+        {{allergy.name}}
+        <button (click)="delAllergy(allergy)"  color="danger" ion-button round item-end outline icon-start>
+            <ion-icon name='trash'></ion-icon>
+            Sil
+        </button>
+    </ion-item>
+</ion-list>
+
+<ion-list-header>
+    HASTALIKLAR
+</ion-list-header>
+<ion-list>
+    <ion-item>
+        <ion-input #diseaseInput maxlength="40" type="text" placeholder="Hastalık adı girin"></ion-input>
+        <button (click)="addDisease(diseaseInput)" ion-button outline round item-end icon-left>
+            <ion-icon name="add"></ion-icon>
+            Ekle
+        </button>
+    </ion-item>
+    <ion-item  *ngFor="let disease of student.diseases">
+        {{disease.name}}
+        <button (click)="delDisease(disease)"  color="danger" ion-button round item-end outline icon-start>
+            <ion-icon name='trash'></ion-icon>
+            Sil
+        </button>
+    </ion-item>
+</ion-list>
+
+
+
+
+
+
+
+<ion-list>
+    <ion-item>
+        <ion-label>Kan Grubu</ion-label>
+        <ion-select [(ngModel)]="student.bloodGroupId" name="bloodGroupId" #bloodGroupId="ngModel"  interface="action-sheet" style="color: #BBB;">
+            <ion-option value="1">A Rh+</ion-option>
+            <ion-option value="5">A Rh-</ion-option>
+            <ion-option value="2">B Rh+</ion-option>
+            <ion-option value="6">B Rh-</ion-option>
+            <ion-option value="3">AB Rh+</ion-option>
+            <ion-option value="7">AB Rh-</ion-option>
+            <ion-option value="4">0 Rh+</ion-option>
+            <ion-option value="8">0 Rh-</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>Boy (cm)</ion-label>
+        <ion-input [(ngModel)]="student.height" name="height" type="number" #height="ngModel" spellcheck="false" autocapitalize="off" placeholder="Boy girin" text-right style="color: #BBB;">
+        </ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Kilo (kg)</ion-label>
+        <ion-input [(ngModel)]="student.weight" name="weight" type="number" #weight="ngModel" spellcheck="false" autocapitalize="off" placeholder="Kilo girin" text-right style="color: #BBB;">
+        </ion-input>
+    </ion-item>
+</ion-list>
+
+
+
+
+
+
+
+
+	</form>
+
+</ion-content>

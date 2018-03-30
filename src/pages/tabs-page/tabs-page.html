@@ -1,0 +1,7 @@
+<ion-tabs [selectedIndex]="mySelectedIndex" name="conference">
+  <ion-tab [root]="tab1Root" tabTitle="Öğrenciler" tabIcon="body"></ion-tab>
+  <ion-tab *ngIf="this.globalValues.userInfo.role  == 'HOSTESS'" [root]="tab2Root" tabTitle="Servis" tabIcon="bus"></ion-tab>
+  <!-- <ion-tab *ngIf="this.globalValues.userInfo.role  == 'HOSTESS'" [root]="tab3Root" tabTitle="Profil" tabIcon="contact"></ion-tab> -->
+  <ion-tab *ngIf="this.globalValues.userInfo.role  == 'PARENT'" [root]="tab2Root" tabTitle="Harita" tabIcon="map"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Profil" tabIcon="contact"></ion-tab>
+</ion-tabs>

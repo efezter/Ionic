@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{this.globalValues.curStudent.firstName}} {{this.globalValues.curStudent.lastName}}</ion-title>
+        <ion-buttons *ngIf="this.globalValues.userInfo.role == 'PARENT'" end>
+            <button (click)="openEdit()" ion-button item-end strong>
+                Düzenle
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+    <ion-list>
+        <ion-list-header hideWhen="android">
+        </ion-list-header>
+        <ion-item style="height: 120px">
+            <ion-avatar item-start>
+                <img style="width:90px; height:90px" src="{{this.globalValues.curStudent.pictureUrl}}">
+                    </ion-avatar>
+            <h1>{{this.globalValues.curStudent.firstName}} {{this.globalValues.curStudent.lastName}}</h1>
+        </ion-item>
+    </ion-list>
+    
+    
+    <ion-list-header>
+        KİŞİSEL BİLGİLER
+    </ion-list-header>
+    <ion-list>
+        <ion-item>
+            <h2 style="display: inline-block;">T.C. Kimlik No</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.tCNo}}</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Doğum Tarihi</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.dob | date: 'd MMMM yyyy' }}</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Cinsiyet</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.gender}}</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Okul</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.school}}</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Sınıf</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.class + "-" + this.globalValues.curStudent.branch}}</span>
+        </ion-item>
+    </ion-list>
+    
+    
+    <ion-list-header>
+        TIBBİ KİMLİK
+    </ion-list-header>
+    <ion-list>
+        <ion-item>
+            <h2 style="display: inline-block;">Kan Grubu</h2>
+            <span style="float: right; color: #BBB">{{this.globalValues.curStudent.bloodGroupName}}</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">İlaçlar</h2>
+            <span style="float: right; color: #BBB" *ngFor="let med of this.globalValues.curStudent.medicines">{{med.name}}&nbsp;</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Alerjiler</h2>
+            <span style="float: right; color: #BBB" *ngFor="let al of this.globalValues.curStudent.allergies">{{al.name}}&nbsp;</span>
+        </ion-item>
+        <ion-item>
+            <h2 style="display: inline-block;">Hastalıklar</h2>
+            <span style="float: right; color: #BBB" *ngFor="let dis of this.globalValues.curStudent.diseases">{{dis.name}}&nbsp;</span>
+        </ion-item>
+    </ion-list>
+    
+    
+    <ion-list  *ngIf="shuttle && this.globalValues.userInfo.role == 'PARENT'">
+        <ion-item>
+            <a href="tel:{{shuttle.driverPhone}}" style="text-decoration: none">Şoförü ara</a>
+        </ion-item>
+        <ion-item>
+            <a href="tel:{{shuttle.hostessPhone}}" style="text-decoration: none">Hostesi ara</a>
+        </ion-item>
+        <ion-item>
+            <button ion-button color="primary" (click)="goActivityDetail(this.globalValues.curStudent.id)" outline>Aktivite Detayları</button>
+        </ion-item>
+    </ion-list>
+    
+    
+    <ion-list  *ngIf="this.globalValues.userInfo.role == 'HOSTESS'">
+        <ion-item *ngFor="let per of this.globalValues.curStudent.parents">
+            <a href="tel:{{per.number}}" style="text-decoration: none">Veliyi ara: {{per.name}}</a>
+        </ion-item>
+    </ion-list>
+</ion-content>

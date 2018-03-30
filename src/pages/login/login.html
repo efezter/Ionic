@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Giriş</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="logo">
+		<img src="assets/img/appicon.png" alt="Ionic logo">
+	</div>
+
+	<form #loginForm="ngForm" novalidate>
+		<ion-list>
+			<ion-item>
+				<ion-label stacked color="primary">Kullanıcı Adı</ion-label>
+				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+				Kullanıcı adı gereklidir.
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Şifre</ion-label>
+				<ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+				Şifre gereklidir
+			</p>
+		</ion-list>
+
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button (click)="onLogin(loginForm)" type="submit" block style="background-color:#1BB2A8">Oturum aç</button>
+			</ion-col>
+		</ion-row>
+	</form>
+
+</ion-content>

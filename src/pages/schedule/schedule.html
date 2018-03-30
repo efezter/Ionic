@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar no-border-bottom *ngIf="this.globalValues.userInfo">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+      <ion-title>Öğrenciler</ion-title>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-list #scheduleList [hidden]="students.length === 0">
+
+    <ion-item-sliding *ngFor="let student of students" #slidingItem>
+      <button ion-item (click)="goToStudentDetail(student)">
+        <ion-avatar item-start>
+          <img src="{{student.pictureUrl}}">
+        </ion-avatar>
+        <h2>{{student.firstName}} {{student.lastName}}</h2>
+      </button>
+      <ion-item-options>       
+        <button style="width:100px" ion-button color="secondary" (click)="addFavorite(slidingItem, student)" icon-start *ngIf="this.globalValues.userInfo.role  == 'HOSTESS' && student.isTaken == false">
+          <ion-icon name="ios-log-in"></ion-icon>
+          Al
+        </button>
+        <button  style="width:100px" ion-button color="danger" (click)="addFavorite(slidingItem, student)" icon-start *ngIf="this.globalValues.userInfo.role  == 'HOSTESS' && student.isTaken == true">
+          <ion-icon name="ios-log-out"></ion-icon>
+          Bırak
+        </button>       
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list-header [hidden]="students.length > 0">
+      Kayıt yok.
+  </ion-list-header>
+</ion-content>

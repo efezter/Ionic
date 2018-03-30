@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "857357853121",
+    "firebase_url": "https://invgardenmobil.firebaseio.com",
+    "project_id": "invgardenmobil",
+    "storage_bucket": "invgardenmobil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857357853121:android:ba50a3b57ce58c0d",
+        "android_client_info": {
+          "package_name": "com.invgarden.BilicraServisim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857357853121-v6tbo193giljkhor7qfvhfe3ig2g86os.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrdD8q_m5ociNDtmZexwxyLjXRCUOzGKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
